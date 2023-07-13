@@ -1,5 +1,6 @@
 // @refresh reload
-import { Suspense } from "solid-js";
+import type { JSX } from 'solid-js';
+import { Suspense } from 'solid-js';
 import {
   Body,
   ErrorBoundary,
@@ -11,11 +12,11 @@ import {
   Routes,
   Scripts,
   Title,
-} from "solid-start";
-import Nav from "./components/nav";
-import "./root.css";
+} from 'solid-start';
+import Nav from './components/nav';
+import './root.css';
 
-export default function Root() {
+export default function Root(): JSX.Element {
   return (
     <Html lang="en">
       <Head>

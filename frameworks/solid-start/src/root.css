@@ -8,7 +8,7 @@ body {
   overflow-y: scroll;
 }
 
-a {
+a, button {
   color: #34495e;
   text-decoration: none;
 }

@@ -1,6 +1,7 @@
-import { A } from "solid-start";
+import type { JSX } from 'solid-js';
+import { A } from 'solid-start';
 
-function Nav() {
+export default function Nav(): JSX.Element {
   return (
     <header class="header">
       <nav class="inner">
@@ -31,5 +32,3 @@ function Nav() {
     </header>
   );
 }
-
-export default Nav;
