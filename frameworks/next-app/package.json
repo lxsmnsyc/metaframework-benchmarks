@@ -1,0 +1,26 @@
+{
+  "name": "@metaframeworks/next-app",
+  "private": true,
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^13.4.9",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "18.2.14",
+    "@types/react-dom": "^18.2.7",
+    "eslint": "^8.44.0",
+    "eslint-config-lxsmnsyc": "^0.6.5",
+    "typescript": "^5.1.6"
+  }
+}
