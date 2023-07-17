@@ -20,14 +20,6 @@ export default function Nav(): JSX.Element {
         <A href="/job">
           <strong>Jobs</strong>
         </A>
-        <a
-          class="github"
-          href="http://github.com/solidjs/solid"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Built with Solid
-        </a>
       </nav>
     </header>
   );
