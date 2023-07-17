@@ -1,3 +1,6 @@
+import Nav from '../components/Nav';
+import '../lib/root.css';
+
 export default function RootLayout({
   children,
 }: {
@@ -5,7 +8,16 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <head>
+        <title>Hacker News Clone</title>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Hacker News Clone" />
+      </head>
+      <body>
+        <Nav />
+        {children}
+      </body>
     </html>
   );
 }
