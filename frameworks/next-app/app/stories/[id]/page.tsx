@@ -1,10 +1,10 @@
 import type { JSX } from 'react';
-import fetchAPI from '../../../lib/api';
-import { IStory } from '../../../components/types';
 import Link from 'next/link';
+import fetchAPI from '../../../lib/api';
+import type { IStory } from '../../../components/types';
 import Comment from '../../../components/Comment';
 
-async function Story({ params }: { params: { id: string }}): Promise<JSX.Element> {
+async function Story({ params }: { params: { id: string } }): Promise<JSX.Element> {
   const story = await fetchAPI<IStory>(`item/${params.id}`);
   return (
     <div className="item-view">

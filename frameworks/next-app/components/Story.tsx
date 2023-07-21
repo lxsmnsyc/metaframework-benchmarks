@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 
-import type { IStory } from './types';
 import Link from 'next/link';
+import type { IStory } from './types';
 
 function Story({ story }: { story: IStory }): JSX.Element {
   return (
@@ -30,28 +30,32 @@ function Story({ story }: { story: IStory }): JSX.Element {
       <span className="meta">
         {(
           story.type !== 'job'
-            ? <>
-              by
-              {' '}
-              <Link href={`/users/${story.user}`}>{story.user}</Link>
-              {' '}
-              {story.time_ago}
-              {' '}
-              |
-              {' '}
-              <Link href={`/stories/${story.id}`}>
-                {story.comments_count
-                  ? `${story.comments_count} comments`
-                  : 'discuss'}
-              </Link>
-            </>
+            ? (
+              <>
+                by
+                {' '}
+                <Link href={`/users/${story.user}`}>{story.user}</Link>
+                {' '}
+                {story.time_ago}
+                {' '}
+                |
+                {' '}
+                <Link href={`/stories/${story.id}`}>
+                  {story.comments_count
+                    ? `${story.comments_count} comments`
+                    : 'discuss'}
+                </Link>
+              </>
+            )
             : <Link href={`/stories/${story.id}`}>{story.time_ago}</Link>
         )}
       </span>
-      {story.type !== 'link' && <>
+      {story.type !== 'link' && (
+      <>
         {' '}
         <span className="label">{story.type}</span>
-      </>}
+      </>
+      )}
     </li>
   );
 }

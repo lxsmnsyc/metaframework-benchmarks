@@ -20,13 +20,13 @@ interface Props {
   };
   searchParams: {
     page?: string;
-  }
+  };
 }
 
 async function Stories(props: Props): Promise<JSX.Element> {
   const page = props.searchParams.page ? +props.searchParams.page : 1;
-  const type = props.params.stories ? props.params.stories[0] : 'top' as MapStories;
-  if (type === 'favicon.ico') {
+  const type = (props.params.stories ? props.params.stories[0] : 'top') as MapStories;
+  if (!(type in mapStories)) {
     return <h1>Not found</h1>;
   }
   const stories = await fetchAPI<IStory[]>(`${mapStories[type]}?page=${page}`);

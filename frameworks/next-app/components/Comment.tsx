@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
+import Link from 'next/link';
 import type { IComment } from './types';
 import Toggle from './Toggle';
-import Link from 'next/link';
 
 export default function Comment({ comment }: { comment: IComment }): JSX.Element {
   return (
@@ -16,7 +16,7 @@ export default function Comment({ comment }: { comment: IComment }): JSX.Element
       <div
         className="text"
         dangerouslySetInnerHTML={{
-          __html: comment.content
+          __html: comment.content,
         }}
       />
       {!!comment.comments.length && (
@@ -27,4 +27,3 @@ export default function Comment({ comment }: { comment: IComment }): JSX.Element
     </li>
   );
 }
-
