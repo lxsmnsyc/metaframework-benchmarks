@@ -4,7 +4,7 @@ import type { RouteDataArgs } from 'solid-start';
 import { A, useRouteData } from 'solid-start';
 import Story from '../components/story';
 import fetchAPI from '../lib/api';
-import type { IStory } from '~/types';
+import type { IStory } from '../types';
 
 const mapStories = {
   top: 'news',

@@ -9,8 +9,5 @@
     "jsx": "preserve",
     "strict": true,
     "types": ["solid-start/env"],
-    "paths": {
-      "~/*": ["./src/*"]
-    }
   }
 }

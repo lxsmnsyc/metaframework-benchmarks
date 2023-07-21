@@ -1,7 +1,7 @@
 import type { JSX } from 'solid-js';
 import { For, Show } from 'solid-js';
 import { A } from 'solid-start';
-import type { IComment } from '~/types';
+import type { IComment } from '../types';
 import Toggle from './toggle';
 
 function Comment(props: { comment: IComment }): JSX.Element {

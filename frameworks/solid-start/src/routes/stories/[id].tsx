@@ -4,7 +4,7 @@ import type { RouteDataArgs } from 'solid-start';
 import { A, useRouteData } from 'solid-start';
 import Comment from '../../components/comment';
 import fetchAPI from '../../lib/api';
-import type { IStory } from '~/types';
+import type { IStory } from '../../types';
 
 export const routeData = (props: RouteDataArgs): Resource<IStory> => {
   const [story] = createResource<IStory, string>(
