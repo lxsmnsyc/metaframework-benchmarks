@@ -9,14 +9,14 @@ async function runBenchmark(name: string): Promise<void> {
   await $`cd ../frameworks/${name} && npm run build`;
   const server = $`cd ../frameworks/${name} && npm run start`;
   await sleep(5000);
-  await $`lighthouse http://localhost:3000 --output html --output-path="./results/${name}.html" --quiet --chrome-flags="--headless"`;
+  await $`lighthouse http://localhost:3000 --output html --output-path="./results/${name}.html" --chrome-flags="--headless"`;
   await server.kill();
 }
 
 const FRAMEWORKS = [
   'next-app',
-    // 'remix',
-    // 'solid-start',
+  'remix',
+  'solid-start',
 ];
 
 cd(path.join(__dirname, '..'));
