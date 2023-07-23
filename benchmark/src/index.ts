@@ -1,18 +1,31 @@
-import { $, cd } from 'zx/core';
+import { $ } from 'execa';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { sleep } from 'zx';
+
+const sleep = async (ms: number): Promise<boolean> => new Promise<boolean>((res) => {
+  setTimeout(res, ms, true);
+});
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+const parent$ = $({
+  cwd: path.join(__dirname, '..'),
+  stdio: 'inherit',
+});
+
 async function runBenchmark(name: string): Promise<void> {
-  await $`cd ../frameworks/${name} && npm run build`;
-  const server = $`cd ../frameworks/${name} && npm run start`;
+  const framework$ = $({
+    cwd: path.join(__dirname, `../../frameworks/${name}`),
+    stdio: 'inherit',
+  });
+  await framework$`npm run build`;
+  const server = framework$`npm run start`;
   // give time for the server to start
   await sleep(5000);
-  await $`lighthouse http://localhost:3000 --output html --output-path="./results/${name}.html" --chrome-flags="--headless"`;
-  await server.kill();
-  console.log(await server.exitCode);
+  await parent$`lighthouse http://localhost:3000 --output html --output-path="./results/${name}.html" --chrome-flags="--headless"`;
+  // This doesn't seem to do anything
+  server.kill('SIGKILL');
+  await sleep(5000);
 }
 
 const FRAMEWORKS = [
@@ -21,7 +34,7 @@ const FRAMEWORKS = [
   'solid-start',
 ];
 
-cd(path.join(__dirname, '..'));
 for (const framework of FRAMEWORKS) {
+  // eslint-disable-next-line no-await-in-loop
   await runBenchmark(framework);
 }

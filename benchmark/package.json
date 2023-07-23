@@ -4,11 +4,17 @@
   "private": true,
   "dependencies": {
     "esbuild": "^0.14.54",
-    "lighthouse": "^10.4.0",
-    "zx": "^7.2.3"
+    "execa": "^7.1.1",
+    "lighthouse": "^10.4.0"
   },
   "scripts": {
     "start": "npm run build && node dist/index.js",
     "build": "node build.js"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "eslint": "^8.45.0",
+    "eslint-config-lxsmnsyc": "^0.6.5",
+    "typescript": "^5.1.6"
   }
 }

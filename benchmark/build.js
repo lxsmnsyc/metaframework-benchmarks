@@ -11,7 +11,7 @@ await build({
   platform: 'node',
   tsconfig: './tsconfig.json',
   external: [
-    'zx',
+    'execa',
     'lighthouse'
   ],
   target: "esnext",
