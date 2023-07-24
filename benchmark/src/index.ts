@@ -1,6 +1,7 @@
 import { $ } from 'execa';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import killPort from './kill-port';
 
 const sleep = async (ms: number): Promise<boolean> => new Promise<boolean>((res) => {
   setTimeout(res, ms, true);
@@ -25,7 +26,9 @@ async function runBenchmark(name: string): Promise<void> {
   await parent$`lighthouse http://localhost:3000 --output html --output-path="./results/${name}.html" --chrome-flags="--headless"`;
   // This doesn't seem to do anything
   server.kill('SIGKILL');
-  await sleep(5000);
+  // Forcefully kill
+  await killPort(3000);
+  await sleep(2000);
 }
 
 const FRAMEWORKS = [
