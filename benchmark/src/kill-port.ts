@@ -24,14 +24,5 @@ export default async function killPort(port: number): Promise<void> {
     return;
   }
 
-  const { stdout } = await $`lsof -i -P`;
-  if (!stdout) {
-    return;
-  }
-  const lines = stdout.split('\n');
-  const existProccess = lines.filter((line) => line.match(new RegExp(`:*${port}`))).length > 0;
-  if (!existProccess) {
-    return;
-  }
-  await $`lsof -i tcp:${port} | grep LISTEN | awk '{print $2}' | xargs kill -9`;
+  await $`lsof -t -i tcp:${port} | xargs kill`.catch(() => null);
 }
