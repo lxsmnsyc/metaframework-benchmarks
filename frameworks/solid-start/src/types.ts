@@ -9,8 +9,8 @@ export interface IComment {
 }
 
 export interface IStory {
-  id: string;
-  points: string;
+  id: number;
+  points: number;
   url: string;
   title: string;
   domain: string;
