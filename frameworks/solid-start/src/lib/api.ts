@@ -1,7 +1,18 @@
 import { isServer } from 'solid-js/web';
+import data from './data';
+import type { IStory } from '../types';
 
 const story = (path: string): string => `https://node-hnapi.herokuapp.com/${path}`;
 const user = (path: string): string => `https://hacker-news.firebaseio.com/v0/${path}.json`;
+
+const sleep = async (ms: number): Promise<boolean> => new Promise((resolve) => {
+  setTimeout(resolve, ms, true);
+});
+
+export async function getSpecialData(): Promise<IStory> {
+  await sleep(500);
+  return data;
+}
 
 export default async function fetchAPI<T>(path: string): Promise<T> {
   const url = path.startsWith('user') ? user(path) : story(path);
