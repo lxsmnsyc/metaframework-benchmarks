@@ -23,7 +23,7 @@ async function runBenchmark(name: string): Promise<void> {
   const server = framework$`npm run start`;
   // give time for the server to start
   await sleep(5000);
-  await parent$`lighthouse http://localhost:3000 --output html --output-path="./results/${name}.html" --chrome-flags="--headless"`;
+  await parent$`lighthouse http://localhost:3000/stories/special --output html --output-path="./results/${name}.html" --chrome-flags="--headless"`;
   // This doesn't seem to do anything
   server.kill('SIGKILL');
   // Forcefully kill
