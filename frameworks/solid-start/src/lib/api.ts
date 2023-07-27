@@ -10,7 +10,7 @@ const sleep = async (ms: number): Promise<boolean> => new Promise((resolve) => {
 });
 
 export async function getSpecialData(): Promise<IStory> {
-  await sleep(500);
+  await sleep(100);
   return data;
 }
 
