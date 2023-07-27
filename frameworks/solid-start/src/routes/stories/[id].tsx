@@ -3,13 +3,18 @@ import { createResource, For, Show } from 'solid-js';
 import type { RouteDataArgs } from 'solid-start';
 import { A, useRouteData } from 'solid-start';
 import Comment from '../../components/comment';
-import fetchAPI from '../../lib/api';
+import fetchAPI, { getSpecialData } from '../../lib/api';
 import type { IStory } from '../../types';
 
 export const routeData = (props: RouteDataArgs): Resource<IStory> => {
   const [story] = createResource<IStory, string>(
     () => `item/${props.params.id}`,
-    fetchAPI<IStory>,
+    async (id) => {
+      if (id === 'item/special') {
+        return getSpecialData();
+      }
+      return fetchAPI<IStory>(id);
+    },
   );
   return story;
 };

@@ -2,7 +2,7 @@ import { json, type TypedResponse } from '@remix-run/node';
 import { Link, useLoaderData } from '@remix-run/react';
 import type { JSX } from 'react';
 import type { IStory } from '../../components/types';
-import fetchAPI from '../../lib/api';
+import fetchAPI, { getSpecialData } from '../../lib/api';
 import Comment from '../../components/Comment';
 
 interface Params {
@@ -10,7 +10,11 @@ interface Params {
 }
 
 export const loader = async ({ params }: Params): Promise<TypedResponse<IStory>> => (
-  json(await fetchAPI<IStory>(`item/${params.id}`))
+  json(
+    params.id === 'special'
+      ? await getSpecialData()
+      : await fetchAPI<IStory>(`item/${params.id}`),
+  )
 );
 
 export default function Story(): JSX.Element {
