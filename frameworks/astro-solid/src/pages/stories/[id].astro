@@ -1,0 +1,49 @@
+---
+import Root from '../../root.astro';
+import fetchAPI, { getSpecialData } from '../../lib/api';
+import type { IStory } from '../../types';
+import Comment from '../../components/Comment.astro';
+
+const story = Astro.params.id === 'special'
+    ? await getSpecialData()
+    : await fetchAPI<IStory>(`item/${Astro.params.id}`);
+---
+<Root>
+  <div class="item-view">
+    <div class="item-view-header">
+      <a href={story.url} target="_blank" rel="noreferrer">
+        <h1>{story.title}</h1>
+      </a>
+      {!!story.domain && (
+        <span class="host">
+          (
+          {story.domain}
+          )
+        </span>
+      )}
+      <p class="meta">
+        {story.points}
+        {' '}
+        points | by
+        {' '}
+        <a href={`/users/${story.user}`}>{story.user}</a>
+        {' '}
+        {story.time_ago}
+        {' '}
+        ago
+      </p>
+    </div>
+    <div class="item-view-comments">
+      <p class="item-view-comments-header">
+        {story.comments_count
+          ? `${story.comments_count} comments`
+          : 'No comments yet.'}
+      </p>
+      <ul class="comment-children">
+        {story.comments.map((comment) => (
+          <Comment parent comment={comment} />
+        ))}
+      </ul>
+    </div>
+  </div>
+</Root>

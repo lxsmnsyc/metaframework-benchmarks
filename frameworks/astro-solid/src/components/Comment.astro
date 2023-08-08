@@ -1,0 +1,29 @@
+---
+import type { IComment } from '../types';
+import Toggle from './Toggle';
+
+interface Props {
+  comment: IComment;
+  parent: boolean;
+}
+
+const { comment } = Astro.props;
+---
+<li class="comment">
+  <div class="by">
+    <a href={`/users/${comment.user}`}>{comment.user}</a>
+    {' '}
+    {comment.time_ago}
+    {' '}
+    ago
+  </div>
+  <div
+    class="text"
+    set:html={comment.content}
+  />
+  {!!comment.comments.length && (
+    <Toggle client:load parent={Astro.props.parent}>
+      {comment.comments.map((cmt) => <Astro.self comment={cmt} />)}
+    </Toggle>
+  )}
+</li>

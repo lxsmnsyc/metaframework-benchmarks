@@ -1,0 +1,84 @@
+---
+import fetchAPI from '../lib/api';
+import type { IStory } from '../types';
+import Story from '../components/Story.astro';
+import Root from '../root.astro';
+
+const mapStories = {
+  top: 'news',
+  new: 'newest',
+  show: 'show',
+  ask: 'ask',
+  job: 'jobs',
+} as const;
+
+type MapStories = keyof typeof mapStories;
+
+const currentPage = Astro.url.searchParams.get('page');
+const page = currentPage ? +currentPage : 1;
+const type = (Astro.params.stories ? Astro.params.stories[0] : 'top') as MapStories;
+if (!(type in mapStories)) {
+  return new Response(null, {
+    status: 404,
+  });
+}
+const stories = await fetchAPI<IStory[]>(`${mapStories[type]}?page=${page}`);
+---
+<Root>
+  <div class="news-view">
+    <div class="news-list-nav">
+      {(
+        page > 1
+          ? (
+            <a
+              class="page-link"
+              href={`/${type}?page=${page - 1}`}
+              aria-label="Previous Page"
+            >
+              {'<'}
+              {' '}
+              prev
+            </a>
+          )
+          : (
+            <span class="page-link disabled" aria-disabled="true">
+              {'<'}
+              {' '}
+              prev
+            </span>
+          )
+      )}
+      <span>
+        page
+        {' '}
+        {page}
+      </span>
+      {(
+        stories.length >= 29
+          ? (
+            <a
+              class="page-link"
+              href={`/${type}?page=${page + 1}`}
+              aria-label="Next Page"
+            >
+              more
+              {' '}
+              {'>'}
+            </a>
+          )
+          : (
+            <span class="page-link disabled" aria-disabled="true">
+              more
+              {' '}
+              {'>'}
+            </span>
+          )
+      )}
+    </div>
+    <main class="news-list">
+      <ul>
+        {stories.map((story) => <Story story={story} />)}
+      </ul>
+    </main>
+  </div>
+</Root>
