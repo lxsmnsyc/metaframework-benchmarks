@@ -35,6 +35,7 @@ const FRAMEWORKS = [
   'next-app',
   'remix',
   'solid-start',
+  'qwikcity',
 ];
 
 for (const framework of FRAMEWORKS) {
