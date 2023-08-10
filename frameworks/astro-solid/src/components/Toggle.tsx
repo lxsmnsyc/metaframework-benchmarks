@@ -23,9 +23,9 @@ export default function Toggle(props: ToggleProps): JSX.Element {
       </div>
       <ul
         class="comment-children"
-        // style={{ display: open() ? 'block' : 'none' }}
+        style={{ display: open() ? 'block' : 'none' }}
       >
-        {open() && props.children}
+        {props.children}
       </ul>
     </>
   );

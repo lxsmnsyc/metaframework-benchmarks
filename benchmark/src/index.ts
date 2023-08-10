@@ -36,6 +36,7 @@ const FRAMEWORKS = [
   'remix',
   'solid-start',
   'qwikcity',
+  'astro-solid',
 ];
 
 for (const framework of FRAMEWORKS) {
