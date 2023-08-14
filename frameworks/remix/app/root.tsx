@@ -1,4 +1,4 @@
-import type { JSX } from 'react';
+import { useEffect, type JSX } from 'react';
 import { cssBundleHref } from '@remix-run/css-bundle';
 import type { LinksFunction } from '@remix-run/node';
 import {
@@ -11,6 +11,7 @@ import {
 } from '@remix-run/react';
 import Nav from '../components/Nav';
 import styles from '../lib/root.css';
+import measure from '../lib/measure';
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: 'stylesheet', href: cssBundleHref }] : []),
@@ -18,6 +19,9 @@ export const links: LinksFunction = () => [
 ];
 
 export default function App(): JSX.Element {
+  useEffect(() => {
+    measure();
+  }, []);
   return (
     <html lang="en">
       <head>
