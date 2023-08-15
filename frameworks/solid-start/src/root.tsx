@@ -1,6 +1,6 @@
 // @refresh reload
 import type { JSX } from 'solid-js';
-import { Suspense, createEffect } from 'solid-js';
+import { Suspense } from 'solid-js';
 import {
   Body,
   ErrorBoundary,
@@ -14,12 +14,8 @@ import {
 } from 'solid-start';
 import Nav from './components/nav';
 import './root.css';
-import measure from './lib/measure';
 
 export default function Root(): JSX.Element {
-  createEffect(() => {
-    measure();
-  });
   return (
     <Html lang="en">
       <Head>

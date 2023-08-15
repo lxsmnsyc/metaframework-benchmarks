@@ -1,47 +1,48 @@
 /**
  * By default, Remix will handle generating the HTTP Response for you.
- * You are free to delete this file if you'd like to, but if you ever want it revealed again, you can run `npx remix reveal` ✨
+ * You are free to delete this file if you'd like to, but if you ever
+ * want it revealed again, you can run `npx remix reveal` ✨
  * For more information, see https://remix.run/file-conventions/entry.server
  */
 
-import { PassThrough } from "node:stream";
+import { PassThrough } from 'node:stream';
 
-import type { AppLoadContext, EntryContext } from "@remix-run/node";
-import { Response } from "@remix-run/node";
-import { RemixServer } from "@remix-run/react";
-import isbot from "isbot";
-import { renderToPipeableStream } from "react-dom/server";
+import type { AppLoadContext, EntryContext } from '@remix-run/node';
+import { Response } from '@remix-run/node';
+import { RemixServer } from '@remix-run/react';
+import isbot from 'isbot';
+import { renderToPipeableStream } from 'react-dom/server';
 
 const ABORT_DELAY = 5_000;
 
-export default function handleRequest(
+export default async function handleRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
   remixContext: EntryContext,
-  loadContext: AppLoadContext
-) {
-  return isbot(request.headers.get("user-agent"))
+  loadContext: AppLoadContext,
+): Promise<Response> {
+  return isbot(request.headers.get('user-agent'))
     ? handleBotRequest(
-        request,
-        responseStatusCode,
-        responseHeaders,
-        remixContext
-      )
+      request,
+      responseStatusCode,
+      responseHeaders,
+      remixContext,
+    )
     : handleBrowserRequest(
-        request,
-        responseStatusCode,
-        responseHeaders,
-        remixContext
-      );
+      request,
+      responseStatusCode,
+      responseHeaders,
+      remixContext,
+    );
 }
 
-function handleBotRequest(
+async function handleBotRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: EntryContext
-) {
+  remixContext: EntryContext,
+): Promise<Response> {
   return new Promise((resolve, reject) => {
     let shellRendered = false;
     const { pipe, abort } = renderToPipeableStream(
@@ -55,13 +56,13 @@ function handleBotRequest(
           shellRendered = true;
           const body = new PassThrough();
 
-          responseHeaders.set("Content-Type", "text/html");
+          responseHeaders.set('Content-Type', 'text/html');
 
           resolve(
             new Response(body, {
               headers: responseHeaders,
               status: responseStatusCode,
-            })
+            }),
           );
 
           pipe(body);
@@ -78,19 +79,19 @@ function handleBotRequest(
             console.error(error);
           }
         },
-      }
+      },
     );
 
     setTimeout(abort, ABORT_DELAY);
   });
 }
 
-function handleBrowserRequest(
+async function handleBrowserRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: EntryContext
-) {
+  remixContext: EntryContext,
+): Promise<Response> {
   return new Promise((resolve, reject) => {
     let shellRendered = false;
     const { pipe, abort } = renderToPipeableStream(
@@ -104,13 +105,13 @@ function handleBrowserRequest(
           shellRendered = true;
           const body = new PassThrough();
 
-          responseHeaders.set("Content-Type", "text/html");
+          responseHeaders.set('Content-Type', 'text/html');
 
           resolve(
             new Response(body, {
               headers: responseHeaders,
               status: responseStatusCode,
-            })
+            }),
           );
 
           pipe(body);
@@ -127,7 +128,7 @@ function handleBrowserRequest(
             console.error(error);
           }
         },
-      }
+      },
     );
 
     setTimeout(abort, ABORT_DELAY);

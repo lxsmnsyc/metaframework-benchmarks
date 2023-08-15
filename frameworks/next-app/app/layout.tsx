@@ -1,18 +1,14 @@
 'use client';
 
-import { useEffect } from 'react';
 import Nav from '../components/Nav';
 import '../lib/root.css';
-import measure from '../lib/measure';
+import '../lib/measure';
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }): JSX.Element {
-  useEffect(() => {
-    measure();
-  }, []);
   return (
     <html lang="en">
       <head>

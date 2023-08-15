@@ -23,11 +23,11 @@ type WebVitalsMetric =
 
 type WebVitalsCode = WebVitalsMetric['name'];
 
-export default function measure(): void {
+if (typeof window !== 'undefined') {
   const flags = new Set<WebVitalsCode>(['CLS', 'FCP', 'FID', 'INP', 'LCP', 'TTFB']);
   const measurements: WebVitalsMetric[] = [];
 
-  function capture(value: WebVitalsMetric): void {
+  const capture = (value: WebVitalsMetric): void => {
     if (flags.size) {
       console.log('CAPTURED', value.name);
       flags.delete(value.name);
@@ -40,7 +40,7 @@ export default function measure(): void {
         document.head.appendChild(el);
       }
     }
-  }
+  };
 
   // On-load
   onFCP(capture);

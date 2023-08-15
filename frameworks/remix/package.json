@@ -1,7 +1,7 @@
 {
   "name": "@metaframeworks/remix",
   "private": true,
-  "sideEffects": false,
+  "sideEffects": true,
   "scripts": {
     "build": "remix build",
     "dev": "remix dev",
