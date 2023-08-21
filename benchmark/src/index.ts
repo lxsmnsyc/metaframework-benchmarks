@@ -2,6 +2,8 @@ import { $ } from 'execa';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import killPort from './kill-port';
+import { PAGE, PORT } from './constants';
+import runWebVitals from './web-vitals';
 
 const sleep = async (ms: number): Promise<boolean> => new Promise<boolean>((res) => {
   setTimeout(res, ms, true);
@@ -23,12 +25,16 @@ async function runBenchmark(name: string): Promise<void> {
   const server = framework$`npm run start`;
   // give time for the server to start
   await sleep(5000);
-  await parent$`lighthouse http://localhost:3000/stories/special --output html --output-path="./results/${name}.html" --chrome-flags="--headless"`;
-  // This doesn't seem to do anything
-  server.kill('SIGKILL');
-  // Forcefully kill
-  await killPort(3000);
-  await sleep(2000);
+  try {
+    await parent$`lighthouse ${PAGE} --output html --output-path="./results/${name}.html" --chrome-flags="--headless"`;
+    await runWebVitals(name);
+  } finally {
+    // This doesn't seem to do anything
+    server.kill('SIGKILL');
+    // Forcefully kill
+    await killPort(PORT);
+    await sleep(2000);
+  }
 }
 
 const FRAMEWORKS = [

@@ -12,7 +12,8 @@ await build({
   tsconfig: './tsconfig.json',
   external: [
     'execa',
-    'lighthouse'
+    'lighthouse',
+    'puppeteer'
   ],
   target: "esnext",
   legalComments: 'eof',
