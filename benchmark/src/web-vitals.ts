@@ -33,7 +33,10 @@ export default async function runWebVitals(framework: string): Promise<void> {
 
   if (el) {
     const filePath = path.join(process.cwd(), 'web-vitals', `${framework}.json`);
-    await outputJson(filePath, await page.evaluate((target) => target.textContent, el));
+    const result = await page.evaluate((target) => target.textContent, el);
+    if (result) {
+      await outputJson(filePath, JSON.parse(result));
+    }
   }
   await browser.close();
 }
