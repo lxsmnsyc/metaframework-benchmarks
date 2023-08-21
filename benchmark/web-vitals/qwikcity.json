@@ -1,0 +1,135 @@
+[
+  {
+    "name": "FCP",
+    "value": 1162.7999999523163,
+    "rating": "good",
+    "delta": 1162.7999999523163,
+    "entries": [
+      {
+        "name": "first-contentful-paint",
+        "entryType": "paint",
+        "startTime": 1162.7999999523163,
+        "duration": 0
+      }
+    ],
+    "id": "v3-1692618277053-1889968736804",
+    "navigationType": "navigate"
+  },
+  {
+    "name": "TTFB",
+    "value": 934.2999999523163,
+    "rating": "needs-improvement",
+    "delta": 934.2999999523163,
+    "entries": [
+      {
+        "name": "http://localhost:3000/stories/special/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1358.7999999523163,
+        "initiatorType": "navigation",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "workerStart": 0,
+        "redirectStart": 1.6999999284744263,
+        "redirectEnd": 7.100000023841858,
+        "fetchStart": 7.100000023841858,
+        "domainLookupStart": 7.100000023841858,
+        "domainLookupEnd": 7.100000023841858,
+        "connectStart": 7.100000023841858,
+        "secureConnectionStart": 0,
+        "connectEnd": 7.100000023841858,
+        "requestStart": 8.199999928474426,
+        "responseStart": 934.2999999523163,
+        "firstInterimResponseStart": 0,
+        "responseEnd": 948.3999999761581,
+        "transferSize": 2817021,
+        "encodedBodySize": 2816721,
+        "decodedBodySize": 2816721,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 1340.8999999761581,
+        "domContentLoadedEventStart": 1357.1000000238419,
+        "domContentLoadedEventEnd": 1357.1000000238419,
+        "domComplete": 1358.7999999523163,
+        "loadEventStart": 1358.7999999523163,
+        "loadEventEnd": 1358.7999999523163,
+        "type": "navigate",
+        "redirectCount": 1,
+        "activationStart": 0
+      }
+    ],
+    "id": "v3-1692618277053-3700296125920",
+    "navigationType": "navigate"
+  },
+  {
+    "name": "LCP",
+    "value": 1162.7999999523163,
+    "rating": "good",
+    "delta": 1162.7999999523163,
+    "entries": [
+      {
+        "name": "",
+        "entryType": "largest-contentful-paint",
+        "startTime": 1162.7999999523163,
+        "duration": 0,
+        "size": 45576,
+        "renderTime": 1162.799,
+        "loadTime": 0,
+        "firstAnimatedFrameTime": 0,
+        "id": "",
+        "url": ""
+      }
+    ],
+    "id": "v3-1692618277054-1744121226648",
+    "navigationType": "navigate"
+  },
+  {
+    "name": "FID",
+    "value": 2.899999976158142,
+    "rating": "good",
+    "delta": 2.899999976158142,
+    "entries": [
+      {
+        "name": "pointerdown",
+        "entryType": "first-input",
+        "startTime": 1453.1000000238419,
+        "duration": 16,
+        "processingStart": 1456,
+        "processingEnd": 1456,
+        "cancelable": true
+      }
+    ],
+    "id": "v3-1692618277054-5051409304902",
+    "navigationType": "navigate"
+  },
+  {
+    "name": "INP",
+    "value": 16,
+    "rating": "good",
+    "delta": 16,
+    "entries": [
+      {
+        "name": "pointerdown",
+        "entryType": "first-input",
+        "startTime": 1453.1000000238419,
+        "duration": 16,
+        "processingStart": 1456,
+        "processingEnd": 1456,
+        "cancelable": true
+      }
+    ],
+    "id": "v3-1692618277054-5109697116966",
+    "navigationType": "navigate"
+  },
+  {
+    "name": "CLS",
+    "value": 0,
+    "rating": "good",
+    "delta": 0,
+    "entries": [],
+    "id": "v3-1692618277055-9872135709617",
+    "navigationType": "navigate"
+  }
+]

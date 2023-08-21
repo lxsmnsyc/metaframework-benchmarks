@@ -1,0 +1,162 @@
+[
+  {
+    "name": "FCP",
+    "value": 439.3000000715256,
+    "rating": "good",
+    "delta": 439.3000000715256,
+    "entries": [
+      {
+        "name": "first-contentful-paint",
+        "entryType": "paint",
+        "startTime": 439.3000000715256,
+        "duration": 0
+      }
+    ],
+    "id": "v3-1692618173880-6180063988938",
+    "navigationType": "navigate"
+  },
+  {
+    "name": "TTFB",
+    "value": 267,
+    "rating": "good",
+    "delta": 267,
+    "entries": [
+      {
+        "name": "http://localhost:3000/stories/special",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 687.2000000476837,
+        "initiatorType": "navigation",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "workerStart": 0,
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 1.600000023841858,
+        "domainLookupStart": 1.600000023841858,
+        "domainLookupEnd": 1.600000023841858,
+        "connectStart": 1.600000023841858,
+        "secureConnectionStart": 0,
+        "connectEnd": 1.600000023841858,
+        "requestStart": 3.399999976158142,
+        "responseStart": 267,
+        "firstInterimResponseStart": 0,
+        "responseEnd": 587.2000000476837,
+        "transferSize": 592300,
+        "encodedBodySize": 592000,
+        "decodedBodySize": 1610036,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 668,
+        "domContentLoadedEventStart": 668,
+        "domContentLoadedEventEnd": 668,
+        "domComplete": 687.1000000238419,
+        "loadEventStart": 687.2000000476837,
+        "loadEventEnd": 687.2000000476837,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0
+      }
+    ],
+    "id": "v3-1692618173880-5350871297106",
+    "navigationType": "navigate"
+  },
+  {
+    "name": "LCP",
+    "value": 439.3000000715256,
+    "rating": "good",
+    "delta": 439.3000000715256,
+    "entries": [
+      {
+        "name": "",
+        "entryType": "largest-contentful-paint",
+        "startTime": 439.3000000715256,
+        "duration": 0,
+        "size": 45576,
+        "renderTime": 439.3,
+        "loadTime": 0,
+        "firstAnimatedFrameTime": 0,
+        "id": "",
+        "url": ""
+      }
+    ],
+    "id": "v3-1692618173880-2200528636916",
+    "navigationType": "navigate"
+  },
+  {
+    "name": "FID",
+    "value": 11.100000023841858,
+    "rating": "good",
+    "delta": 11.100000023841858,
+    "entries": [
+      {
+        "name": "pointerdown",
+        "entryType": "first-input",
+        "startTime": 815.8999999761581,
+        "duration": 120,
+        "processingStart": 827,
+        "processingEnd": 921.1000000238419,
+        "cancelable": true
+      }
+    ],
+    "id": "v3-1692618173881-2828091112358",
+    "navigationType": "navigate"
+  },
+  {
+    "name": "INP",
+    "value": 120,
+    "rating": "good",
+    "delta": 120,
+    "entries": [
+      {
+        "name": "pointerdown",
+        "entryType": "event",
+        "startTime": 815.8999999761581,
+        "duration": 120,
+        "processingStart": 827,
+        "processingEnd": 921.1000000238419,
+        "cancelable": true
+      },
+      {
+        "name": "pointerdown",
+        "entryType": "first-input",
+        "startTime": 815.8999999761581,
+        "duration": 120,
+        "processingStart": 827,
+        "processingEnd": 921.1000000238419,
+        "cancelable": true
+      },
+      {
+        "name": "pointerup",
+        "entryType": "event",
+        "startTime": 816.1000000238419,
+        "duration": 120,
+        "processingStart": 934.7000000476837,
+        "processingEnd": 934.8999999761581,
+        "cancelable": true
+      },
+      {
+        "name": "click",
+        "entryType": "event",
+        "startTime": 816.1000000238419,
+        "duration": 120,
+        "processingStart": 935.1000000238419,
+        "processingEnd": 935.3000000715256,
+        "cancelable": true
+      }
+    ],
+    "id": "v3-1692618173881-8651020097579",
+    "navigationType": "navigate"
+  },
+  {
+    "name": "CLS",
+    "value": 0,
+    "rating": "good",
+    "delta": 0,
+    "entries": [],
+    "id": "v3-1692618173883-3828835701048",
+    "navigationType": "navigate"
+  }
+]
