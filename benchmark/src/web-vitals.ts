@@ -66,7 +66,7 @@ async function convertWebVitalsToTable(framework: string): Promise<string> {
 
   let result = `<td>${framework}</td>`;
   for (const key of SEQUENCE) {
-    result += `<td>${mapped[key].value.toFixed(2)}(${mapped[key].rating})</td>`;
+    result += `<td>${mapped[key].value.toFixed(2)} (${mapped[key].rating})</td>`;
   }
   return `<tr>${result}</tr>`;
 }
