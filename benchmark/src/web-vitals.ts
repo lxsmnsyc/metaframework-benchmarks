@@ -1,7 +1,10 @@
 import * as puppeteer from 'puppeteer';
 import path from 'path';
+import type {
+  CLSMetric, FCPMetric, FIDMetric, INPMetric, LCPMetric, TTFBMetric,
+} from 'web-vitals';
 import { PAGE } from './constants';
-import { outputJson } from './fs-utils';
+import { outputFile, outputJson, readJson } from './fs-utils';
 
 export default async function runWebVitals(framework: string): Promise<void> {
   const browser = await puppeteer.launch({
@@ -39,4 +42,42 @@ export default async function runWebVitals(framework: string): Promise<void> {
     }
   }
   await browser.close();
+}
+
+type WebVitalsMetric =
+  | CLSMetric
+  | FCPMetric
+  | FIDMetric
+  | INPMetric
+  | LCPMetric
+  | TTFBMetric;
+
+const SEQUENCE = ['FCP', 'TTFB', 'LCP', 'FID', 'INP', 'CLS'];
+
+async function convertWebVitalsToTable(framework: string): Promise<string> {
+  const filePath = path.join(process.cwd(), 'web-vitals', `${framework}.json`);
+  const data = await readJson<WebVitalsMetric[]>(filePath);
+  // Simplify data
+  const simplifed = data.map((item) => [item.name, {
+    rating: item.rating,
+    value: item.value,
+  }] as const);
+  const mapped = Object.fromEntries(simplifed);
+
+  let result = `<td>${framework}</td>`;
+  for (const key of SEQUENCE) {
+    result += `<td>${mapped[key].value.toFixed(2)}(${mapped[key].rating})</td>`;
+  }
+  return `<tr>${result}</tr>`;
+}
+
+const HEADER = `<thead><tr><th>Framework</th>${SEQUENCE.map((item) => `<th>${item}</th>`).join('')}</tr></thead>`;
+
+export async function printWebVitalsTable(frameworks: string[]): Promise<void> {
+  const results = `<table>${HEADER}<tbody>${(await Promise.all(frameworks.map(convertWebVitalsToTable))).join('')}</tbody></table>`;
+  await outputFile(
+    path.join(process.cwd(), 'web-vitals', 'results.html'),
+    `<!DOCTYPE html><html><head>WebVitals Result</head><body>${results}</body></html>`,
+    { encoding: 'utf-8' },
+  );
 }

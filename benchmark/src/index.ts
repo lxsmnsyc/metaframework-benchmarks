@@ -3,7 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import killPort from './kill-port';
 import { PAGE, PORT } from './constants';
-import runWebVitals from './web-vitals';
+import runWebVitals, { printWebVitalsTable } from './web-vitals';
 
 const sleep = async (ms: number): Promise<boolean> => new Promise<boolean>((res) => {
   setTimeout(res, ms, true);
@@ -49,3 +49,4 @@ for (const framework of FRAMEWORKS) {
   // eslint-disable-next-line no-await-in-loop
   await runBenchmark(framework);
 }
+await printWebVitalsTable(FRAMEWORKS);

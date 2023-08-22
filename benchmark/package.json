@@ -6,7 +6,8 @@
     "esbuild": "^0.14.54",
     "execa": "^7.1.1",
     "lighthouse": "^10.4.0",
-    "puppeteer": "^21.0.3"
+    "puppeteer": "^21.0.3",
+    "web-vitals": "^3.4.0"
   },
   "scripts": {
     "start": "npm run build && node dist/index.js",
